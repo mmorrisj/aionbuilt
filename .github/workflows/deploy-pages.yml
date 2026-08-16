@@ -25,11 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # enablement turns Pages on via the API if it isn't already, so the
-      # first deploy doesn't require a manual visit to Settings -> Pages.
+      # Pages must already be enabled (Settings -> Pages -> Source: GitHub
+      # Actions). The action's `enablement: true` option cannot do it for
+      # us: creating a Pages site is not permitted with GITHUB_TOKEN, which
+      # fails with "Resource not accessible by integration".
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       # The site is plain static files, so the repo root ships as-is.
       # If a build step is added later, point `path` at its output directory.
