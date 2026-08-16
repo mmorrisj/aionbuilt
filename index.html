@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aion Innovations — AI solutions</title>
+<meta name="description" content="Aion Innovations LLC — applied AI systems, tooling, and automation.">
+<meta name="color-scheme" content="light dark">
+
+<!-- Open Graph: controls the preview card when the link is shared. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aion Innovations">
+<meta property="og:description" content="Applied AI systems, tooling, and automation.">
+<meta property="og:url" content="https://aionbuilt.com">
+
+<style>
+/* ---------------------------------------------------------------------------
+   Theme tokens. Light is the base; the media query redefines only what changes.
+   --------------------------------------------------------------------------- */
+:root {
+  --bg:        #fbfaf8;
+  --surface:   #ffffff;
+  --border:    #e4e0d9;
+  --text:      #1c1a17;
+  --muted:     #6b655c;
+  --accent:    #a8741a;
+  --accent-sf: #f5eddc;
+  --shadow:    0 1px 2px rgba(28,26,23,.05), 0 8px 24px -12px rgba(28,26,23,.18);
+  --radius:    10px;
+  --measure:   68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #14130f;
+    --surface:   #1c1a16;
+    --border:    #302c25;
+    --text:      #eae6df;
+    --muted:     #9b9488;
+    --accent:    #e0a94a;
+    --accent-sf: #2a2318;
+    --shadow:    0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:focus-visible, .project:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Skip link — visible only once focused. */
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--surface); color: var(--text);
+  padding: 10px 16px; border-radius: var(--radius); z-index: 10;
+}
+.skip:focus { left: 16px; top: 16px; }
+
+/* --- masthead ------------------------------------------------------------ */
+header.site {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+.wordmark {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  text-decoration: none;
+  color: var(--text);
+}
+/* The brand already contains the category: AIon. Let it do the work. */
+.wordmark .ai { color: var(--accent); font-weight: 700; }
+.wordmark .co { color: var(--muted); font-weight: 400; }
+
+nav.site a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .9rem;
+  margin-left: 20px;
+}
+nav.site a:hover { color: var(--text); }
+
+/* --- hero ---------------------------------------------------------------- */
+.hero { padding: 72px 0 56px; }
+.hero h1 {
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -.03em;
+  margin: 0 0 20px;
+  max-width: 20ch;
+}
+.hero p {
+  font-size: 1.125rem;
+  color: var(--muted);
+  max-width: var(--measure);
+  margin: 0 0 32px;
+}
+
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: .95rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  transition: transform .12s ease, border-color .12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-secondary { background: var(--surface); color: var(--text); }
+.btn-secondary:hover { border-color: var(--accent); }
+
+/* --- sections ------------------------------------------------------------ */
+section { padding: 40px 0; border-top: 1px solid var(--border); }
+section > h2 {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0 0 28px;
+}
+.prose { max-width: var(--measure); color: var(--muted); }
+.prose p { margin: 0 0 16px; }
+.prose strong { color: var(--text); font-weight: 600; }
+
+/* --- project cards ------------------------------------------------------- */
+.projects { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.project {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform .14s ease, border-color .14s ease;
+}
+.project:hover { transform: translateY(-2px); border-color: var(--accent); }
+.project h3 { margin: 0 0 8px; font-size: 1.05rem; letter-spacing: -.01em; }
+.project h3 a { color: inherit; text-decoration: none; }
+.project h3 a::after { content: ""; position: absolute; inset: 0; } /* whole-card click target */
+.project { position: relative; }
+.project p { margin: 0 0 18px; color: var(--muted); font-size: .95rem; flex: 1; }
+
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag {
+  font-size: .72rem;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: var(--accent-sf);
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+
+/* --- capabilities -------------------------------------------------------- */
+.caps { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.caps h3 { font-size: .95rem; margin: 0 0 8px; }
+.caps p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+/* --- footer -------------------------------------------------------------- */
+footer.site {
+  border-top: 1px solid var(--border);
+  padding: 32px 0 56px;
+  color: var(--muted);
+  font-size: .875rem;
+}
+footer.site .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+footer.site a { color: var(--muted); }
+footer.site a:hover { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap masthead">
+    <a class="wordmark" href="/">
+      <span class="ai">AI</span>on <span class="co">Innovations</span>
+    </a>
+    <nav class="site" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <!-- ====================================================================
+         HERO — edit this first. One clear sentence beats three vague ones.
+         ==================================================================== -->
+    <div class="hero">
+      <h1>Applied AI systems, built end&nbsp;to&nbsp;end.</h1>
+      <p>
+        I'm <strong>[Your Name]</strong>. Through Aion Innovations I design and ship
+        AI-backed tooling — data pipelines, agent workflows, and the unglamorous
+        plumbing that makes them hold up in production.
+        <!-- TODO: replace with your actual positioning. Say what you build and
+             for whom. Avoid "passionate about leveraging AI to..." -->
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn btn-secondary" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         WORK — curated, not exhaustive. A resume page is about selection:
+         three sharp projects read stronger than nine you half-remember.
+         Duplicate a .project block to add another.
+         ==================================================================== -->
+    <section id="work">
+      <h2>Selected work</h2>
+      <div class="projects">
+
+        <article class="project">
+          <h3><a href="https://github.com/mmorrisj/JustGenerate">JustGenerate</a></h3>
+          <p>
+            <!-- TODO: one sentence on what it does, one on what was hard about it.
+                 The second sentence is what makes a reader trust you. -->
+            Placeholder — describe what this project does and the interesting
+            problem it solved.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">LLM</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <h3><a href="#">Project two</a></h3>
+          <p>Placeholder — swap in a real project and link it to the repo or a live demo.</p>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Automation</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <h3><a href="#">Project three</a></h3>
+          <p>Placeholder — a working demo people can click beats a description every time.</p>
+          <div class="tags">
+            <span class="tag">Data</span>
+            <span class="tag">Pipelines</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CAPABILITIES — what someone could hire you for.
+         ==================================================================== -->
+    <section id="capabilities">
+      <h2>Capabilities</h2>
+      <div class="caps">
+        <div>
+          <h3>AI integration</h3>
+          <p>Wiring language models into real workflows — retrieval, tool use, evaluation.</p>
+        </div>
+        <div>
+          <h3>Data engineering</h3>
+          <p>Pipelines that stay correct when the inputs get messy.</p>
+        </div>
+        <div>
+          <h3>Automation</h3>
+          <p>Replacing recurring manual work with something that runs unattended.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CONTACT
+         ==================================================================== -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="prose">
+        <p>
+          Open to consulting and project work.
+          Reach me at <a href="mailto:hello@aionbuilt.com">hello@aionbuilt.com</a>.
+        </p>
+        <p>
+          <a href="https://github.com/mmorrisj">GitHub</a> ·
+          <a href="#">LinkedIn</a>
+          <!-- TODO: add your LinkedIn URL -->
+        </p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>Aion Innovations LLC</span>
+    <span><a href="mailto:hello@aionbuilt.com">hello@aionbuilt.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
